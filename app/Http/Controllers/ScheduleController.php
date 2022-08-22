@@ -19,6 +19,6 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        dd('s');
+        return view('schedules.index');
     }
 }
