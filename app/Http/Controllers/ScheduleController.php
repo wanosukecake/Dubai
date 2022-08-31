@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Services\ScheduleService;
 
 class ScheduleController extends Controller
 {
-    public function __construct()
+    public function __construct(ScheduleService $scheduleService)
     {
         parent::__construct();
+        $this->scheduleService = $scheduleService;
     }
 
     /**
