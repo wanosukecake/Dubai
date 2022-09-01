@@ -17,7 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('schedule', 'ScheduleController');
+// 認証が必要なルーティングは以下
+Route::middleware(['auth'])->group(function () {
+    Route::resource('schedule', 'ScheduleController');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
