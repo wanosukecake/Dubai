@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 認証が必要なルーティングは以下
+// 認証のみ必要なルーティングは以下
 Route::middleware(['auth'])->group(function () {
-    Route::resource('schedule', 'ScheduleController');
+    Route::put('student.update', [StudentController::class, 'update'])->name('student.update');
 });
+
+// 認証と初期情報チェックが必要なルーティングは以下
+Route::middleware(['auth','initial_check'])->group(function () {
+    Route::resource('schedule', 'ScheduleController');
+    Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
+});
+
 
 Auth::routes();
 

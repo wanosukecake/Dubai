@@ -21,6 +21,14 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\Schedule\ScheduleRepositoryInterface::class,
             \App\Repositories\Schedule\ScheduleRepository::class
         );
+        $this->app->bind(
+            \App\Repositories\Student\StudentRepositoryInterface::class,
+            \App\Repositories\Student\StudentRepository::class
+        );
+        $this->app->bind(
+            \App\Repositories\User\UserRepositoryInterface::class,
+            \App\Repositories\User\UserRepository::class
+        );
         Date::use(CarbonImmutable::class);
 
     }
