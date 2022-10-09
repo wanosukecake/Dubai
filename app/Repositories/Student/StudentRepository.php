@@ -16,7 +16,7 @@ class StudentRepository implements StudentRepositoryInterface
         return $result;
     }
 
-    public function saveUserStudent($request, $student, $user, $userId)
+    public function updateUserStudent($request, $student, $userId)
     {
         DB::beginTransaction();
         try {

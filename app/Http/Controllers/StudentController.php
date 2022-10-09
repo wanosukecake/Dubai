@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
 use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -37,6 +38,7 @@ class StudentController extends Controller
     public function edit(Request $request)
     {
         $userStudent = $this->studentService->getUserStudent();
+
         return view('students.edit', compact('userStudent'));
     }
 
@@ -46,20 +48,18 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(StudentRequest $request, Student $student, User $user)
+    public function update(StudentRequest $request, Student $student)
     {
-        $result = $this->studentService->saveUserStudent($request, $student, $user);
+        $result = $this->studentService->updateUserStudent($request, $student);
         if ($result) {
             $flash = ['success' => 'データを更新しました。'];
         } else {
             $flash = ['error' => 'データの更新に失敗しました。'];
         }
-        $userStudent = $this->studentService->getUserStudent();
 
         return redirect()
-            ->route('student.edit', $userStudent)
+            ->route('student.edit', ['id' => Auth::id()])
             ->with($flash);
     }
-
 
 }

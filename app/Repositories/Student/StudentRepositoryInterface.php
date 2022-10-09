@@ -6,5 +6,5 @@ interface StudentRepositoryInterface
 {
     public function getUserStudent($user_id);
 
-    public function saveUserStudent($request, $student, $user, $userId);
+    public function updateUserStudent($request, $student, $userId);
 }
