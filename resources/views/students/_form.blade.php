@@ -1,10 +1,11 @@
 <div class="form-group">
     {{ Form::label('password', 'パスワード', ['class' => '']) }}
     <div class="col-sm-10">
-        {{ Form::text('user[password]', null, [
-            'class' => 'form-control' . ($errors->has('user.password') ? ' is-invalid' : ''),
-            'required'
-        ]) }}
+        {{ Form::password('user[password]',
+            [
+                'class' => 'form-control' . ($errors->has('user.password') ? ' is-invalid' : ''),
+            ])
+         }}
         @error('user.password')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -12,7 +13,7 @@
         @enderror
     </div>
 </div>
- 
+
 <div class="form-group">
     {{ Form::label('first_name', '苗字', ['class' => '']) }}
     <div class="col-sm-10">
@@ -48,7 +49,6 @@
     <div class="col-sm-2">
         {{ Form::text('student[age]', $userStudent->student->age?? null, [
             'class' => 'form-control' . ($errors->has('age') ? ' is-invalid' : ''),
-            'required'
         ]) }}
         @error('age')
             <div class="invalid-feedback">
@@ -75,6 +75,38 @@
     </div>
 </div>
 
+
+<div class="form-group">
+    {{ Form::label('introduction', '自己紹介', ['class' => '']) }}
+    <div class="col-sm-10">
+        {{ Form::textarea(
+            'student[introduction]',
+            $userStudent->student->introduction?? null,
+            ['class' => 'form-control' . ($errors->has('introduction') ? ' is-invalid' : ''),'placeholder'=>'自己紹介を記載してください。']) 
+        }}
+        @error('introduction')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
+
+<div class="form-group">
+    {{ Form::label('photo', '画像', ['class' => '']) }}
+    <div class="col-sm-10">
+        {{ Form::file(
+            'student[photo]',
+
+            ['class' => 'form-control' . ($errors->has('introduction') ? ' is-invalid' : ''),'placeholder'=>'自己紹介を記載してください。']) 
+        }}
+        @error('introduction')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
+    </div>
+</div>
 
 <div class="form-group row">
     <div class="col-sm-10">
