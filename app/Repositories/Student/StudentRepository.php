@@ -26,8 +26,7 @@ class StudentRepository implements StudentRepositoryInterface
                 User::where('id', $userId)
                     ->update([
                         'password' => Hash::make($userData['password']),
-                        // TODO:仮フラグ
-                        'kari' => 1
+                        'is_initial_setting' => 1
                     ]);
             }
             $studentData = $request->get('student', []);
