@@ -20,7 +20,7 @@ return [
 
     // ユーザータイプ
     "USER_TYPE" => [
-        'teacher' => '1',
-        'student' => '2',        
+        'teacher' => 1,
+        'student' => 2,        
     ],
 ];
