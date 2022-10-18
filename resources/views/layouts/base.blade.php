@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ isset($title) ? $title . ' | ' : '' }}Dubai-Cloud</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
@@ -15,12 +16,13 @@
         @stack('css')
         <script src="{{ asset('/js/libraries/jquery-3.6.0.js') }}"></script>
         <script src="{{ asset('/js/libraries/jquery.nicescroll.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="{{ asset('/js/libraries/bootstrap.min.js') }}"></script>
 
         <script src="{{ asset('/js/common.js') }}"></script>
         @stack('js')
     </head>
-
+    @yield('modal')
     <body>
         <div id="app">
             <div class="main-wrapper">
@@ -33,42 +35,35 @@
                         <div class="sidebar-brand sidebar-brand-sm">
                             <a href="index.html">St</a>
                         </div>
+                        @if (Auth::user()->user_type == config('const.USER_TYPE.student'))
                         <ul class="sidebar-menu">
-                            <li class="menu-header">ダッシュボード</li>
-                            <li class="dropdown active">
-                                <ul>
-                                    <li><a class="nav-link" href="">ダッシュボード</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="menu-header">レッスン</li>
-                            <li class="dropdown active">
-                                <ul class="">
-                                    <li class=active><a class="nav-link" href="">レッスン一覧</a></li>
-                                </ul>
-                            </li>
-
                             <li class="menu-header">スケジュール</li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="">スケジュール登録・変更</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.studentIndex') }}">スケジュール一覧</a></li>
                                 </ul>
                             </li>
-
-                            <li class="menu-header">レポート</li>
-                            <li class="dropdown active">
-                                <ul>
-                                    <li><a class="nav-link" href="">一覧</a></li>
-                                    <li><a class="nav-link" href="">新規作成</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-header">目標</li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="">週間目標</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                    <li class=active><a class="nav-link" href="">スケジュール編集</a></li>
                                 </ul>
                             </li>
                         </ul>
+
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">ユーザー</li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                    <li class=active><a class="nav-link" href="{{ route('student.edit', ['id' => Auth::id()]) }}">ユーザー情報編集</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        @endif
                     </aside>
                 </div>
                 <!-- Main Content -->
