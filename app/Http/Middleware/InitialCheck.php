@@ -21,7 +21,7 @@ class InitialCheck
         // 初期設定完了フラグをチェック
         if (!$user->kari) {
             if (!strpos($request->path(), 'edit')) {
-                $route = $user->user_type == '1' ? 'student.edit' : 'schedules.index';
+                $route = $user->user_type == '1' ? 'student.edit' : 'schedule.index';
                 return redirect()->route($route, $user->id);
             }
         }

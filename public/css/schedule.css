@@ -8,3 +8,18 @@
 .schedule-submit {
     margin:auto;
 }
+
+.article-image {
+    background-image: url(../images/yoga.jpeg);
+}
+.article.article-style-c .article-details .article-title span {
+    color: #6777ef;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.article.article-style-c .article-user .user-detail-name span {
+    color: #6777ef;
+    font-weight: 700;
+}

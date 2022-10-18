@@ -19,8 +19,8 @@ class StudentService extends BaseService
         return $this->student->getUserStudent(Auth::id());
     }
 
-    public function saveUserStudent($request, $student, $user) 
+    public function updateUserStudent($request, $student) 
     {
-        return $this->student->saveUserStudent($request, $student, $user, Auth::id());
+        return $this->student->updateUserStudent($request, $student, Auth::id());
     }
 }
