@@ -19,4 +19,14 @@ class Lesson extends Model
     protected $casts = [
         'start_datetime' => 'datetime',
     ];
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
+    public function teachers()
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 }

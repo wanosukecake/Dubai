@@ -16,9 +16,11 @@
         @stack('css')
         <script src="{{ asset('/js/libraries/jquery-3.6.0.js') }}"></script>
         <script src="{{ asset('/js/libraries/jquery.nicescroll.min.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="{{ asset('/js/libraries/bootstrap.min.js') }}"></script>
-
+        <script src="{{ asset('/js/stisla.js') }}"></script>
+        <!-- <script src="{{ asset('/js/scripts.js') }}"></script> -->
         <script src="{{ asset('/js/common.js') }}"></script>
         @stack('js')
     </head>
@@ -37,15 +39,15 @@
                         </div>
                         @if (Auth::user()->user_type == config('const.USER_TYPE.student'))
                         <ul class="sidebar-menu">
-                            <li class="menu-header">スケジュール</li>
+                            <li class="menu-header">レッスン</li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('schedule.studentIndex') }}">スケジュール一覧</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.studentIndex') }}">レッスン登録状況</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">レッスン一覧</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">

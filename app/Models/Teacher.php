@@ -10,4 +10,9 @@ class Teacher extends Model
     use HasFactory;
 
     protected $guarded = ['created_at', 'updated_at'];
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

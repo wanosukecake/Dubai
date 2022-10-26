@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-<h2 class="section-title">スケジュール一覧</h2>
+<h2 class="section-title">レッスン登録状況</h2>
 
 <div id='calendar-container'>
     <div id='calendar'></div>

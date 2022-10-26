@@ -23,3 +23,22 @@
     color: #6777ef;
     font-weight: 700;
 }
+
+.categories {
+    margin-top:5px;
+}
+
+.pager {
+    margin-left: 300px;
+}
+
+a {
+    text-decoration: none !important;
+}
+.card-body {
+    padding: 0px 40px !important; 
+}
+
+.search-button {
+    width: 180px;
+}
