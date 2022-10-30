@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ScheduleService;
+use App\Services\StudentLessonService;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function __construct(ScheduleService $scheduleService)
+    public function __construct(StudentLessonService $studentLessonService)
     {
         parent::__construct();
-        $this->scheduleService = $scheduleService;
+        $this->studentLessonService = $studentLessonService;
     }
 
     /**
@@ -19,9 +19,12 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('schedules.index');
+        $param = $request->all();
+        $lessons = $this->studentLessonService->getLessons($param);
+
+        return view('schedules.index', compact('lessons','param'));
     }
 
     /**

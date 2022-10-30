@@ -42,3 +42,15 @@ a {
 .search-button {
     width: 180px;
 }
+
+.time {
+    font-size: 19px;
+}
+
+.new {
+    background-color: #34395e !important;
+    color: #fff !important;
+    margin-bottom: 4px;
+    font-size: 11px !important;
+    padding: 3px 8px !important; 
+}
