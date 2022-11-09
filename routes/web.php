@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\ManagerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', function () {
 // 認証のみ必要なルーティングは以下
 Route::middleware(['auth'])->group(function () {
     Route::put('student.update', [StudentController::class, 'update'])->name('student.update');
+    Route::get('/manager/add', [ManagerController::class, 'add'])->name('manager.add');
+    Route::post('/manager/store', [ManagerController::class, 'store'])->name('manager.store');
 });
 
 // 認証と初期情報チェックが必要なルーティングは以下
