@@ -16,6 +16,13 @@ class StudentController extends Controller
     public function __construct(StudentService $studentService)
     {
         $this->studentService = $studentService;
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            if ($user->user_type !== config('const.USER_TYPE.student')) {
+                abort(500);
+            }
+            return $next($request);
+        });
     }
 
     /**
