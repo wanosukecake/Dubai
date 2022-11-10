@@ -42,12 +42,12 @@
                             <li class="menu-header">レッスン</li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('schedule.studentIndex') }}">レッスン登録状況</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('lesson.studentIndex') }}">レッスン登録状況</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">レッスン一覧</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('lesson.index') }}">レッスン一覧</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">

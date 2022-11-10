@@ -17,7 +17,7 @@ class Lesson extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'start_datetime' => 'datetime',
+        'start_date' => 'date',
     ];
 
     public function categories()

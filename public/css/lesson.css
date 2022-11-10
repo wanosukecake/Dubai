@@ -1,0 +1,56 @@
+.schedule {
+    font-size:14px;
+    padding: 15px;
+    margin-left: 11px;
+    margin-bottom: 10px;
+}
+
+.schedule-submit {
+    margin:auto;
+}
+
+.article-image {
+    background-image: url(../images/yoga.jpeg);
+}
+.article.article-style-c .article-details .article-title span {
+    color: #6777ef;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+.article.article-style-c .article-user .user-detail-name span {
+    color: #6777ef;
+    font-weight: 700;
+}
+
+.categories {
+    margin-top:5px;
+}
+
+.pager {
+    margin-left: 300px;
+}
+
+a {
+    text-decoration: none !important;
+}
+.card-body {
+    padding: 0px 40px !important; 
+}
+
+.search-button {
+    width: 180px;
+}
+
+.time {
+    font-size: 19px;
+}
+
+.new {
+    background-color: #34395e !important;
+    color: #fff !important;
+    margin-bottom: 4px;
+    font-size: 11px !important;
+    padding: 3px 8px !important; 
+}

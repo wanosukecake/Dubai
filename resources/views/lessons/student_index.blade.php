@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@extends('layouts.schedule')
+@extends('layouts.lesson')
 @push('js')
     <script src="{{ asset('/js/studentSchedule.js') }}"></script>
 @endpush

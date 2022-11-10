@@ -6,7 +6,7 @@ use App\Repositories\Lesson\LessonRepositoryInterface;
 use Illuminate\Support\Str;
 use Carbon\CarbonImmutable as Carbon; 
 
-class StudentLessonService extends BaseService
+class LessonService extends BaseService
 {
     protected $lesson;
 
