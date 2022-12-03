@@ -1,5 +1,6 @@
-// 仮パスワード発行
-function createTempPassword() {
+document.addEventListener('DOMContentLoaded', function() {
+  // 仮パスワード発行
+  $('.js-temp_password').click(function() {
     const originString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     const length = 8;
     let password = "";
@@ -7,4 +8,5 @@ function createTempPassword() {
       password += originString.charAt(Math.floor(Math.random() * originString.length));
     }
     document.getElementById("password").value = password;
-}
+  });
+});

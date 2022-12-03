@@ -24,9 +24,4 @@ return [
         'student' => '2',
         'manager' => '3'
     ],
-
-    // ユーザータイプ
-    "USER_TYPE_LIST" => [
-        '1', '2','3'
-    ],
 ];
