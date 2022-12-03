@@ -22,7 +22,7 @@ class StudentRepository implements StudentRepositoryInterface
         try {
             // パスワードが存在していればパスワードを更新する。
             $userData = $request->get('user', []);
-            if(isset($userData['password'])) {
+            if (isset($userData['password'])) {
                 User::where('id', $userId)
                     ->update([
                         'password' => Hash::make($userData['password']),
@@ -31,6 +31,7 @@ class StudentRepository implements StudentRepositoryInterface
             }
             $studentData = $request->get('student', []);
             Student::where('user_id', $userId)
+                        // TODO:saveOrUpdateに変更する
                         ->update($studentData);
 
             DB::commit();

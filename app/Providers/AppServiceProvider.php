@@ -33,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\User\UserRepositoryInterface::class,
             \App\Repositories\User\UserRepository::class
         );
+        $this->app->bind(
+            \App\Repositories\Lesson\LessonRepositoryInterface::class,
+            \App\Repositories\Lesson\LessonRepository::class
+        );
         Date::use(CarbonImmutable::class);
 
     }

@@ -97,7 +97,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
  });
-
-
-
-

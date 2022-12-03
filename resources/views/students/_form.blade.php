@@ -110,18 +110,3 @@
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </div>
 </div>
-
-<!-- <div class="form-group">
-    {{ Form::label('photo', '画像', ['class' => '']) }}
-    <div class="col-sm-10">
-        {{ Form::file(
-            'student[photo]',
-            ['class' => 'form-control' . ($errors->has('introduction') ? ' is-invalid' : ''),'placeholder'=>'自己紹介を記載してください。']) 
-        }}
-        @error('introduction')
-            <div class="invalid-feedback">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
-</div> -->

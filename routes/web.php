@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\LessonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,11 @@ Route::middleware(['auth'])->group(function () {
 
 // 認証と初期情報チェックが必要なルーティングは以下
 Route::middleware(['auth','initial_check'])->group(function () {
-    Route::get('/schedule/student-index', [ScheduleController::class, 'studentIndex'])->name('schedule.studentIndex');
-    Route::get('/schedule/get-schedules', [ScheduleController::class, 'getSchedules']);
     Route::post('/schedule/save-student-schedule', [ScheduleController::class, 'saveStudentSchedule']);
     Route::resource('schedule', 'ScheduleController');
+    Route::get('/lesson/student-index', [LessonController::class, 'studentIndex'])->name('lesson.studentIndex');
+    Route::get('/lesson/get-schedules', [LessonController::class, 'getSchedules']);
+    Route::resource('lesson', 'LessonController');
     Route::get('/student', [StudentController::class, 'index'])->name('student.index');
     Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
 });
