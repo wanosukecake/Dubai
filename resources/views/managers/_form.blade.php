@@ -5,7 +5,7 @@
     <div class="card-body">
         <div class="row">                               
             <div class="form-group col-md-8">
-                {{ Form::label('email', 'email address', ['class' => '']) }}
+                {{ Form::label('email', 'Email Address', ['class' => '']) }}
                 <div>
                     {{ Form::email('email', null, [
                         'class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''),
