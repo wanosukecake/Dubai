@@ -7,24 +7,32 @@
             <div class="form-group col-md-8">
                 {{ Form::label('email', 'email address', ['class' => '']) }}
                 <div>
-                    {{ Form::email('inputEmail', null, ['class' => 'form-control','id' => 'inputEmail']) }}
+                    {{ Form::email('email', null, [
+                        'class' => 'form-control' . ($errors->has('email') ? ' is-invalid' : ''),
+                        'required'
+                    ]) }}
                 </div>
+                @if($errors->has('email'))
+                    @foreach($errors->get('email') as $message)
+                        <p class="offset-3 col-md-9 alert alert-danger">{{ $message }}</p>
+                    @endforeach
+                @endif
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-12">
-                {{ Form::label('userType', 'User Type', ['class' => '']) }}
+                {{ Form::label('user_type', 'User Type', ['class' => '']) }}
                 <div class="col-md-9 form-inline">
                     @foreach(config('const.USER_TYPE') as $key => $value)
                     <div class="form-inline">
-                        {{ Form::radio('userType', $key , null , ['class' => 'form-control mx-1', 'id' => 'userType'.$key ]) }}
-                        {{ Form::label('userType'.$key , $key) }}
+                        {{ Form::radio('user_type', $value , null , ['class' => 'form-control mx-1', 'id' => 'user_type' . '_' . $key ]) }}
+                        {{ Form::label('user_type' . '_' .$key , $key) }}
                     </div>
                     @endforeach
                 </div>
-                @if($errors->has('userType'))
-                    @foreach($errors->get('userType') as $message)
+                @if($errors->has('user_type'))
+                    @foreach($errors->get('user_type') as $message)
                         <p class="offset-3 col-md-9 alert alert-danger">{{ $message }}</p>
                     @endforeach
                 @endif
@@ -38,11 +46,11 @@
                         'class' => 'form-control' . ($errors->has('password') ? ' is-invalid' : ''),
                         'required'
                     ]) }}
-                    @error('password')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    @if($errors->has('password'))
+                        @foreach($errors->get('password') as $message)
+                            <p class="offset-3 col-md-9 alert alert-danger">{{ $message }}</p>
+                        @endforeach
+                    @endif
                     <div class="col-md-3">
                         <input type="button" value="Temp Password Issue" class="btn btn-primary js-temp_password">
                     </div>

@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class ManagerRequest extends FormRequest
 {
@@ -25,26 +25,13 @@ class ManagerRequest extends FormRequest
      */
     public function rules()
     {
+        $this->merge(['is_initial_setting' => 0]);
+        $this->merge(['password' => Hash::make($this->input('password'))]);
+
         return [
-            'user.email' => ['required', 'string', 'email', 'max:255'],
-            'user.password' => ['max:10', 'required'],
-            'user.is_initial_setting' => ['boolean', 'required'],
-            'user.user_type' => [Rule::in(config('const.USER_TYPE')), 'integer', 'required']
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['max:10', 'required'],
+            'user_type' => [Rule::in(config('const.USER_TYPE')), 'integer', 'required']
         ];
     }
-
-    /**
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            'user.email' => 'email',
-            'user.password' => 'password',
-            'user.is_initial_setting' => 'is_initial_setting',
-            'user.user_type' => 'user_type',
-        ];
-    }
-
-
 }

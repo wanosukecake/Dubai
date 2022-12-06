@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\ManagerService;
-use Illuminate\Http\Request;
 use App\Http\Requests\ManagerRequest;
-use Illuminate\Support\Facades\Auth;
 
 class ManagerController extends Controller
 {
@@ -30,12 +28,12 @@ class ManagerController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ManagerRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(ManagerRequest $request)
     {
-        $data = $request->all();
+        $data = $request->only(['email', 'user_type', 'password', 'is_initial_setting']);
         $result = $this->managerService->createUser($data);
         if ($result) {
             $flash = ['success' => 'データを更新しました。'];

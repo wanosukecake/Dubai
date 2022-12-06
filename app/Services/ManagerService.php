@@ -15,8 +15,6 @@ class ManagerService extends BaseService
 
     public function createUser(array $request) 
     {
-        $isInitialSetting = ['is_initial_setting' => 0];
-        array_merge($request, $isInitialSetting);
         return $this->manager->createUser($request);
     }
 }
