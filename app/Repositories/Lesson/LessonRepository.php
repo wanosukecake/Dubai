@@ -46,7 +46,8 @@ class LessonRepository implements LessonRepositoryInterface
 
     public function getLessonByLessonId($lessonId)
     {
-        $result = Lesson::where([
+        $result = Lesson::with('teachers')
+        ->where([
             ['id', '=', $lessonId],
             ['is_finish', '=', 0]
         ])

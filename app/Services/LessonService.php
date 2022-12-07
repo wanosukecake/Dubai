@@ -89,7 +89,7 @@ class LessonService extends BaseService
             $this->sendMail($mailParams);
         } catch (\Exception $e) {
             info($e->getMessage());
-            abort(response()->json(['message' => '登録に失敗しました。担当者に確認してください。'], 400));
+            abort(response()->json(['message' => 'you failed. Please check with your representative'], 400));
         }
     }
 
@@ -115,9 +115,18 @@ class LessonService extends BaseService
 
             $this->lesson->cancel($param);
 
+            $mailParams = [
+                'subject' => 'Cancel your reservation['. $lesson['lesson_name']. ']',
+                'to' => $userStudent['email'],
+                'template' => 'emails.cancel',
+                'lesson' => $lesson,
+                'user' => $userStudent
+            ];
+
+            $this->sendMail($mailParams);
         } catch (\Exception $e) {
             info($e->getMessage());
-            abort(response()->json(['message' => 'キャンセルに失敗しました。担当者に確認してください。'], 400));
+            abort(response()->json(['message' => 'you failed. Please check with your representative'], 400));
         }
     }
 

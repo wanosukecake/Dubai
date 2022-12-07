@@ -27,7 +27,7 @@ class Lesson extends Model
 
     public function teachers()
     {
-        return $this->belongsTo(Teacher::class);
+        return $this->belongsTo(Teacher::class, 'teacher_id');
     }
 
     public function students()
