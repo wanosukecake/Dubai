@@ -65,6 +65,34 @@
                                 </ul>
                             </li>
                         </ul>
+                        @elseif (Auth::user()->user_type == config('const.USER_TYPE.manager'))
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">スケジュール</li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール一覧</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                <li class=active><a class="nav-link" href="">スケジュール編集</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <ul class="sidebar-menu">
+                            <li class="menu-header">ユーザー</li>
+                            <li class="dropdown active">
+                                <ul class="">
+                                    <li class=active><a class="nav-link" href="{{ route('manager.add') }}">ユーザー新規追加</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                         @endif
                     </aside>
                 </div>

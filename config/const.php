@@ -19,6 +19,7 @@ return [
     "USER_TYPE" => [
         'teacher' => 1,
         'student' => 2,
+        'manager' => 3
     ],
     // 授業時間
     "TIME" => [
