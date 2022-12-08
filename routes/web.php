@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\LessonController;
@@ -32,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth','initial_check'])->group(function () {
     Route::post('/schedule/save-student-schedule', [ScheduleController::class, 'saveStudentSchedule']);
     Route::resource('schedule', 'ScheduleController');
+    Route::get('/schedule/index', [ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::get('/lesson/student-index', [LessonController::class, 'studentIndex'])->name('lesson.studentIndex');
     Route::get('/lesson/get-schedules', [LessonController::class, 'getSchedules']);
     Route::resource('lesson', 'LessonController');
