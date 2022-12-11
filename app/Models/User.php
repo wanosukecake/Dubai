@@ -51,4 +51,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(Student::class);
     }
+
+    /**
+     * The attributes that should be cast.
+     *
+     */
+    public function teacher()
+    {
+        return $this->hasOne(Teacher::class);
+    }
 }

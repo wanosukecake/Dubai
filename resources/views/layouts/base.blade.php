@@ -61,17 +61,12 @@
                             <li class="menu-header">スケジュール</li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <!-- <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール一覧</a></li> -->
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール一覧</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <!-- <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li> -->
-                                </ul>
-                            </li>
-                            <li class="dropdown active">
-                                <ul class="">
-                                <li class=active><a class="nav-link" href="">スケジュール編集</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li>
                                 </ul>
                             </li>
                         </ul>
