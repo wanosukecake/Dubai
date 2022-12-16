@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\LessonService;
 use Illuminate\Http\Request;
+use App\Models\Lesson;
 
 class LessonController extends Controller
 {
@@ -44,9 +45,14 @@ class LessonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
+    public function store(Request $request)
     {
-        dd($request->all());
+        $param = $request->all();
+        $this->lessonService->store($param);
+
+        return response()->json([
+            'status' => 200,
+        ], 200);
     }
 
     /**
@@ -55,9 +61,19 @@ class LessonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show(Lesson $lesson)
     {
+        $teacher = $this->lessonService->getTeacherByTeacherId($lesson['teacher_id']);
+        return view('lessons.show', compact('lesson', 'teacher'));
+    }
 
+    public function cancel(Request $request) 
+    {
+        $param = $request->all();
+        $this->lessonService->cancel($param);
+        return response()->json([
+            'status' => 200,
+        ], 200);
     }
 
     public function getSchedules() 

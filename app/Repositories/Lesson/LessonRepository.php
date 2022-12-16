@@ -43,4 +43,28 @@ class LessonRepository implements LessonRepositoryInterface
 
         return $result;
     }
+
+    public function getLessonByLessonId($lessonId)
+    {
+        $result = Lesson::with('teachers')
+        ->where([
+            ['id', '=', $lessonId],
+            ['is_finish', '=', 0]
+        ])
+        ->first();
+
+        return $result;
+    }
+
+    public function createUserStudent($param)
+    {
+        $lesson = Lesson::where('id', '=', $param['lesson_id'])->first();
+        $lesson->students()->attach($param['student_id']);
+    }
+
+    public function cancel($param)
+    {
+        $lesson = Lesson::where('id', '=', $param['lesson_id'])->first();
+        $lesson->students()->detach($param['student_id']);
+    }
 }

@@ -42,6 +42,19 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function add(Request $request)
+    {
+        $userStudent = $this->studentService->getUserStudent();
+
+        return view('students.add', compact('userStudent'));
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Request $request)
     {
         $userStudent = $this->studentService->getUserStudent();

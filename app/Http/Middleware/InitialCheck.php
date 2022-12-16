@@ -20,9 +20,9 @@ class InitialCheck
         $user = Auth::user();
         // 初期設定完了フラグをチェック
         if (!$user->is_initial_setting) {
-            if (!strpos($request->path(), 'edit')) {
-                $route = $user->user_type == config('const.USER_TYPE.student') ? 'student.edit' : 'schedule.index';
-                return redirect()->route($route, $user->id);
+            if (!strpos($request->path(), 'add')) {
+                $route = $user->user_type == config('const.USER_TYPE.student') ? 'student.add' : 'schedule.index';
+                return redirect()->route($route);
             }
 
         }

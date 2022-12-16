@@ -20,4 +20,9 @@ class Student extends Model
             $post->user_id = Auth::id();
         });
     }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class)->withTimestamps();
+    }
 }

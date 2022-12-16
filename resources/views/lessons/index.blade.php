@@ -25,7 +25,7 @@
         <div class="row">
     @endif
             <div class="col-12 col-md-4 col-lg-4">
-                <a href="#">
+                <a href="{{ route('lesson.show', ['lesson' => $value['id']]) }}">
                     <article class="article article-style-c">
                         <div class="article-header">
                             <div class="article-image" data-background="{{asset('storage/avatar-1.png')}}"></div>
@@ -45,7 +45,7 @@
                                     </span>
                                 </h2>
                             </div>
-                            <p>{{ $value['start_date'] }} <strong class="time">{{ config("const.TIME.". $value['start_time']) }}</strong></p>
+                            <p>{{ date('Y-m-d', strtotime($value['start_date'])) }} <strong class="time">{{ config("const.TIME.". $value['start_time']) }}</strong></p>
                             <p>{{ $value['content'] }}</p>
                             <div class="article-user">
                                 <img alt="image" src="{{asset('storage/avatar-1.png')}}" loading="lazy">
