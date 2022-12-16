@@ -34,6 +34,7 @@ Route::middleware(['auth','initial_check'])->group(function () {
     Route::post('/lesson/cancel', [LessonController::class, 'cancel']);
     Route::resource('lesson', 'LessonController');
     Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/student/add', [StudentController::class, 'add'])->name('student.add');
     Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
 });
 
