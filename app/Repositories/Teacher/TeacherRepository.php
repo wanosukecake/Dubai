@@ -43,4 +43,10 @@ class TeacherRepository implements TeacherRepositoryInterface
 
         return true;
     }
+
+    public function getTeacherByTeacherId($teacherId)
+    {
+        return Teacher::find($teacherId);
+    }
+
 }

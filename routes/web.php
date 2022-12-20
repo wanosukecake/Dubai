@@ -36,8 +36,10 @@ Route::middleware(['auth','initial_check'])->group(function () {
     Route::get('/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::get('/lesson/student-index', [LessonController::class, 'studentIndex'])->name('lesson.studentIndex');
     Route::get('/lesson/get-schedules', [LessonController::class, 'getSchedules']);
+    Route::post('/lesson/cancel', [LessonController::class, 'cancel']);
     Route::resource('lesson', 'LessonController');
     Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/student/add', [StudentController::class, 'add'])->name('student.add');
     Route::get('/student/{id}/edit', [StudentController::class, 'edit'])->name('student.edit');
 });
 

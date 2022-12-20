@@ -26,13 +26,16 @@ class StudentRepository implements StudentRepositoryInterface
                 User::where('id', $userId)
                     ->update([
                         'password' => Hash::make($userData['password']),
-                        'is_initial_setting' => 1
                     ]);
             }
+
+            User::where('id', $userId)
+                ->update([
+                    'is_initial_setting' => 1
+                ]);
+
             $studentData = $request->get('student', []);
-            Student::where('user_id', $userId)
-                        // TODO:saveOrUpdateに変更する
-                        ->update($studentData);
+            Student::updateOrCreate(['user_id' => $userId], $studentData);
 
             DB::commit();
         } catch (\Exception $e) {

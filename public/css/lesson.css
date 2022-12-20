@@ -54,3 +54,14 @@ a {
     font-size: 11px !important;
     padding: 3px 8px !important; 
 }
+
+ion-icon {
+    font-size: 30px;
+    margin-right: 12px;
+}
+.take-button {
+    margin-left: 250px;
+}
+.cancel {
+    margin-left: 50px;
+}
