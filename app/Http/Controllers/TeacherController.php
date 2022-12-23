@@ -54,9 +54,22 @@ class TeacherController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(TeacherRequest $request, Teacher $teacher)
+    public function add(Request $request)
     {
-        $result = $this->teacherService->updateUserTeacher($request, $teacher);
+        $userTeacher = $this->teacherService->getUserTeacher();
+
+        return view('teachers.add', compact('userTeacher'));
+    }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(TeacherRequest $request)
+    {
+        $result = $this->teacherService->updateUserTeacher($request);
         if ($result) {
             $flash = ['success' => 'データを更新しました。'];
         } else {

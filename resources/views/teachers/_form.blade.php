@@ -7,11 +7,10 @@
             <div class="form-group col-md-12 col-12">
                 {{ Form::label('password', 'Password', ['class' => '']) }}
                 <div class="col-sm-10">
-                    {{ Form::password('user[password]',
-                        [
-                            'class' => 'form-control' . ($errors->has('user.password') ? ' is-invalid' : ''),
-                        ])
-                    }}
+                    {{ Form::password('user[password]', [
+                        'class' => 'form-control' . ($errors->has('user.password') ? ' is-invalid' : ''),
+                        ($userTeacher->teacher ? '' : 'required')
+                    ]) }}
                     @error('user.password')
                         <div class="invalid-feedback">
                             {{ $message }}

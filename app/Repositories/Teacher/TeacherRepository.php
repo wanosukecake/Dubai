@@ -16,7 +16,7 @@ class TeacherRepository implements TeacherRepositoryInterface
         return $result;
     }
 
-    public function updateUserTeacher($request, $teacher, $userId)
+    public function updateUserTeacher($request, $userId)
     {
         DB::beginTransaction();
         try {
@@ -26,9 +26,14 @@ class TeacherRepository implements TeacherRepositoryInterface
                 User::where('id', $userId)
                     ->update([
                         'password' => Hash::make($userData['password']),
-                        'is_initial_setting' => 1
                     ]);
             }
+
+            User::where('id', $userId)
+                ->update([
+                    'is_initial_setting' => 1
+                ]);
+
             $teacherData = $request->get('teacher', []);
             teacher::where('user_id', $userId)
                         ->updateOrCreate($teacherData);

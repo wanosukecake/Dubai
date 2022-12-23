@@ -56,9 +56,6 @@
                                 </ul>
                             </li>
                         </ul>
-<<<<<<< HEAD
-                        @else
-=======
 
                         <ul class="sidebar-menu">
                             <li class="menu-header">ユーザー</li>
@@ -72,8 +69,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        @elseif (Auth::user()->user_type == config('const.USER_TYPE.manager'))
->>>>>>> develop
+                        @else
                         <ul class="sidebar-menu">
                             <li class="menu-header">スケジュール</li>
                             <li class="dropdown active">
@@ -93,17 +89,12 @@
                         <ul class="sidebar-menu">
                             <li class="menu-header">ユーザー</li>
                             <li class="dropdown active">
-                                <ul class="">
+                                <ul>
+                                @if (Auth::user()->is_initial_setting == 0)
+                                    <li class=active><a class="nav-link" href="{{ route('teacher.add') }}">ユーザー情報編集</a></li>
+                                @else
                                     <li class=active><a class="nav-link" href="{{ route('teacher.edit', ['id' => Auth::id()]) }}">ユーザー情報編集</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        @elseif (Auth::user()->user_type == config('const.USER_TYPE.student'))
-                        <ul class="sidebar-menu">
-                            <li class="menu-header">ユーザー</li>
-                            <li class="dropdown active">
-                                <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('student.edit', ['id' => Auth::id()]) }}">ユーザー情報編集</a></li>
+                                @endif
                                 </ul>
                             </li>
                         </ul>

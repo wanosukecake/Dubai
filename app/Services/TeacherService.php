@@ -17,8 +17,8 @@ class TeacherService extends BaseService
         return $this->teacher->getUserTeacher(Auth::id());
     }
 
-    public function updateUserTeacher($request, $teacher) 
+    public function updateUserTeacher($request) 
     {
-        return $this->teacher->updateUserTeacher($request, $teacher, Auth::id());
+        return $this->teacher->updateUserTeacher($request, Auth::id());
     }
 }

@@ -21,7 +21,14 @@ class InitialCheck
         // 初期設定完了フラグをチェック
         if (!$user->is_initial_setting) {
             if (!strpos($request->path(), 'add')) {
-                $route = $user->user_type == config('const.USER_TYPE.student') ? 'student.add' : 'schedule.index';
+                if ($user->user_type == config('const.USER_TYPE.student')) {
+                    $route = 'student.add';
+                } elseif ($user->user_type == config('const.USER_TYPE.teacher')) {
+                    $route = 'teacher.add';
+                } else {
+                    $route = 'schedule.index';
+                }
+
                 return redirect()->route($route);
             }
 

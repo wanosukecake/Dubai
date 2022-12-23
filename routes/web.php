@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth','initial_check'])->group(function () {
     Route::resource('schedule', 'ScheduleController');
     Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('/teacher/add', [TeacherController::class, 'add'])->name('teacher.add');
     Route::get('/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
     Route::get('/lesson/student-index', [LessonController::class, 'studentIndex'])->name('lesson.studentIndex');
     Route::get('/lesson/get-schedules', [LessonController::class, 'getSchedules']);
