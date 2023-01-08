@@ -145,6 +145,9 @@
       text-overflow: ellipsis; }
       .article.article-style-c .article-user .user-detail-name a {
         font-weight: 700; }
+      .article.article-style-c .article-br {
+        margin-left: 1em;
+        display: block; }
 
 @media (max-width: 575.98px) {
   .article .article-style-c .article-header {

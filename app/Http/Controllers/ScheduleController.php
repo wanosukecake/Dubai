@@ -21,4 +21,15 @@ class ScheduleController extends Controller
     {
         return view('schedules.index');
     }
+
+    /**
+     * Handle the incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function add()
+    {
+        return view('schedules.add');
+    }
 }

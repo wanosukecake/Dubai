@@ -79,7 +79,7 @@
                             </li>
                             <li class="dropdown active">
                                 <ul class="">
-                                    <li class=active><a class="nav-link" href="{{ route('schedule.index') }}">スケジュール登録</a></li>
+                                    <li class=active><a class="nav-link" href="{{ route('schedule.add') }}">スケジュール登録</a></li>
                                 </ul>
                             </li>
                         </ul>
