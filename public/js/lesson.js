@@ -6,12 +6,13 @@ $(function(){
   }
 
   $(".take-button").click(function() {
-    $(".title").text($('.lesson-name').text());
-    $(".date-schedule").text($('.lesson-datetime').text());
-    $(".description").text($('.lesson-content').text());
-    $(".teacher").text($('.teacher-name').text());
-    $(".profile").text($('.introduction').text());
-    $('#lessonModal').modal();
+    modalText();
+    $('#takeModal').modal();
+  });
+
+  $(".cancel-button").click(function() {
+    modalText();
+    $('#cancelModal').modal();
   });
 
   $(".take").click(function() {
@@ -38,5 +39,13 @@ $(function(){
     };
     $(this).ajaxRequest(doneFunc, data, '/lesson/cancel', 'post')
   })
+
+  function modalText() {
+    $(".title").text($('.lesson-name').text());
+    $(".date-schedule").text($('.lesson-datetime').text());
+    $(".description").text($('.lesson-content').text());
+    $(".teacher").text($('.teacher-name').text());
+    $(".profile").text($('.introduction').text());
+  }
 
 });
