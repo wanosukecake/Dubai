@@ -63,8 +63,10 @@ class LessonController extends Controller
      */
     public function show(Lesson $lesson)
     {
+        $isReserved = $this->lessonService->isReserved($lesson);
         $teacher = $this->lessonService->getTeacherByTeacherId($lesson['teacher_id']);
-        return view('lessons.show', compact('lesson', 'teacher'));
+        
+        return view('lessons.show', compact('lesson', 'teacher', 'isReserved'));
     }
 
     public function cancel(Request $request) 

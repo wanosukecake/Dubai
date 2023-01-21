@@ -25,6 +25,29 @@ class LessonService extends BaseService
 
     }
 
+    // 授業が予約済みかチェック
+    public function isReserved($lesson)
+    {
+        // 有効な授業かつ存在チェック
+        $lesson = $this->getLessonByLessonId($lesson['id']);
+        if (!$lesson) {
+            abort(400);
+        }
+
+        // userIdから生徒レコードを取得
+        $userStudent = $this->student->getUserStudent(Auth::user()->id);
+        if (!$userStudent) {
+            abort(400);
+        }
+ 
+        if ($userStudent->student->lessons->where('id', $lesson['id'])->isEmpty()) {
+            // 予約なし
+            return false;
+        }
+    
+        return true;
+    }
+
     // 受講可能な授業一覧を取得
     public function getLessons($param)
     {

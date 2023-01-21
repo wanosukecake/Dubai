@@ -1,3 +1,5 @@
+<?php $isDisabled = $isReserved == true? "disabled" : ""; ?>
+
 @extends('layouts.base')
 
 @push('css')
@@ -11,6 +13,7 @@
 @endpush
 
 @section('content')
+
 <h2 class="section-title lesson-name">{{ $lesson['lesson_name'] }}</h2>
 
 <div class="row mt-sm-4">
@@ -60,8 +63,10 @@
     </div>
 </div>
 <div class="row">
-    <button class="btn btn-info take-button">Take This Lesson</button>
-    <button class="btn btn-light cancel-button">Cancel</button>
+    <button class="btn btn-info take-button" {{ $isDisabled }}>Take This Lesson</button>
+    @if ($isReserved)
+        <button class="btn btn-light cancel-button">Cancel</button>
+    @endif
 </div>
 
 @endsection
