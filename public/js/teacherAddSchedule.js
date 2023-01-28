@@ -39,17 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
              console.log('select');
              // スケジュール登録ポップアップ
              $('.date-schedule').text(info.start.toDateString())
+             $('.date-schedule-yyyymmdd').val(formatDateYyyyMmDd(info.start));
              $('#calendarModal').modal();
-
-            // if (eventName) {
-            //     // イベントの追加
-            //     calendar.addEvent({
-            //         title: eventName,
-            //         start: info.start,
-            //         end: info.end,
-            //         allDay: true,
-            //     });
-            // }
          },
          eventClick: function(info) {
             //　授業詳細と予約のポップアップ
@@ -76,36 +67,28 @@ document.addEventListener('DOMContentLoaded', function() {
              // イベントがリサイズ（引っ張ったり縮めたり）された時のコールバック
              console.log('eventResize');
          },
- 
-        //  eventRender: function (info) {
-        //    //wired listener to handle click counts instead of event type
-        //    info.el.addEventListener('click', function() {
-        //      clickCnt++;
-        //      if (clickCnt === 1) {
-        //          oneClickTimer = setTimeout(function() {
-        //              clickCnt = 0;
- 
-        //              // SINGLE CLICK
-        //              console.log('single click');
- 
-        //          }, 400);
-        //      } else if (clickCnt === 2) {
-        //          clearTimeout(oneClickTimer);
-        //          clickCnt = 0;
- 
-        //          // DOUBLE CLICK
-        //          console.log('double click');
-        //      }
-        //    });
-        //  },
      })
    calendar.render();
-   let doneFunc = function (response) {
-    console.log(response)
-   };
-   $('.take').click(function() {
-        let data = 'a';
-        let url = '/schedule/save-student-schedule';
-        $(this).ajaxRequest(doneFunc, data, url, 'post')
+
+   $('.add').click(function() {
+    let doneFunc = function (response) {
+        if (!alert('You have completed!')) {
+            $('#calendarModal').modal('hide');
+        }
+    };
+    
+    let scheduleDate = $('.date-schedule-yyyymmdd').val();
+    let scheduleTitle = $('input[name="schedule[title]"]').val();
+    let scheduleTime = $('[name="schedule[time]"] option:selected').val();
+    let scheduleContent = $('textarea[name="schedule[content]"]').val();
+    let scheduleData = {
+        'start_date': scheduleDate,
+        'lesson_name': scheduleTitle,
+        'start_time': scheduleTime,
+        'content': scheduleContent
+    };
+
+    let url = '/schedule/update';
+    $(this).ajaxRequest(doneFunc, scheduleData, url, 'post')
     });
  });

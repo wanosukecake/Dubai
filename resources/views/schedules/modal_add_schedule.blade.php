@@ -14,7 +14,8 @@
                   <div class="article-details">
                     <div class="article-date">
                       {{ Form::label('date', 'Date', ['class' => '']) }}
-                      {{ Form::label('date', 'Date', ['class' => 'date-schedule article-br']) }}  
+                      {{ Form::label('date', 'Date', ['class' => 'date-schedule article-br']) }}
+                      {{ Form::hidden('date', '', ['class' => 'date-schedule-yyyymmdd']) }}
                     </div>
                     <div class="article-title">
                       {{ Form::label('title', 'Title', ['class' => '']) }}
@@ -23,12 +24,19 @@
                         'required'
                       ]) }}
                     </div>
-                    <div class="article-content">
-                      {{ Form::label('content', 'Content', ['class' => '']) }}
-                      {{ Form::textarea('schedule[content]', null, [
-                        'class' => 'form-control' . ($errors->has('schedule.content') ? ' is-invalid' : ''),
-                        'required'
-                      ]) }}
+                    <div class="article-time">
+                      {{ Form::label('time', 'StartTime', ['class' => '']) }}
+                      {{ Form::select(
+                          'schedule[time]',
+                          config('const.TIME'),
+                          null,
+                          [
+                            'class' => 'form-control' . ($errors->has('schedule.time') ? ' is-invalid' : ''),
+                            'placeholder'=>'選択',
+                            'required'
+                          ]
+                         )
+                      }}
                     </div>
                     <div class="article-content">
                       {{ Form::label('content', 'Content', ['class' => '']) }}
@@ -36,21 +44,13 @@
                         'class' => 'form-control' . ($errors->has('schedule.content') ? ' is-invalid' : ''),
                         'required'
                       ]) }}
-                    </div>
-                    <div class="article-user">
-                      <div class="article-user-details">
-                        <div class="user-detail-name">
-                          <span class="teacher"></span>
-                        </div>
-                        <div class="text-job profile"></div>
-                      </div>
                     </div>
                   </div>
                 </article>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                <button type="button" class="btn btn-primary take">受講する</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                <button type="button" class="btn btn-primary add">Add Schedule</button>
             </div>
         </div>
   </div>

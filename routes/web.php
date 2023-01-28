@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth','initial_check'])->group(function () {
     Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('/schedule/add', [ScheduleController::class, 'add'])->name('schedule.add');
+    Route::post('/schedule/update', [ScheduleController::class, 'update']);
     Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
     Route::get('/teacher/add', [TeacherController::class, 'add'])->name('teacher.add');
     Route::get('/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
