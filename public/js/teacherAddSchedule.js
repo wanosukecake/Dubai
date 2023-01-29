@@ -31,9 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             day:  'day',
             list: 'list'
          },
-         eventSources: [
-            // '/schedule/get-schedules',
-         ],
+
          select: function (info) {
              // カレンダーセルクリック、範囲指定された時のコールバック
              console.log('select');
@@ -42,17 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
              $('.date-schedule-yyyymmdd').val(formatDateYyyyMmDd(info.start));
              $('#calendarModal').modal();
          },
+
          eventClick: function(info) {
-            //　授業詳細と予約のポップアップ
-            // TODO:デフォルト以外の項目はextendedPropsから取得する。
-            // スケジュールに登録された情報を表示したポップアップを表示し、
-            // 登録ボタンを押下するとajaxでDBに飛ぶ処理を作る。
-            $('.title').text(info.event.title)
-            $('.teacher').text(info.event.extendedProps.teacher)
-            $('.description').text(info.event.extendedProps.description)
-            $('.profile').text(info.event.extendedProps.profile)
+            //　予定詳細のポップアップ
+            $('input[name="schedule[title]"]').val(info.event.title)
+            $('[name="schedule[time]"]').val(info.event.extendedProps.start_time)
+            $('textarea[name="schedule[content]"]').val(info.event.extendedProps.content)
             $('#calendarModal').modal();
          },
+
          eventReceive: function(info) {
              // イベントがexternal-eventからドロップされた時のコールバック
              console.log('eventReceive');
@@ -67,7 +63,25 @@ document.addEventListener('DOMContentLoaded', function() {
              // イベントがリサイズ（引っ張ったり縮めたり）された時のコールバック
              console.log('eventResize');
          },
+
+         events: function (info, successCallback, failureCallback) {
+            let doneFunc = function (response) {
+                    // 追加したイベントを削除
+                    calendar.removeAllEvents();
+                    // カレンダーに読み込み
+                    successCallback(response);
+            };
+
+            let targetPeriod = {
+                'start_date': info.start.valueOf(),
+                'end_date': info.end.valueOf(),
+            };
+
+            let url = '/schedule/get-schedules';
+            $(this).ajaxRequest(doneFunc, targetPeriod, url, 'post')
+            }
      })
+
    calendar.render();
 
    $('.add').click(function() {

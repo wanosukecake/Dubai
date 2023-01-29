@@ -16,6 +16,13 @@ class TeacherRepository implements TeacherRepositoryInterface
         return $result;
     }
 
+    public function getTeacher($user_id): Teacher
+    {
+        $result = Teacher::where('user_id', $user_id)->first();
+
+        return $result;
+    }
+
     public function updateUserTeacher($request, $userId)
     {
         DB::beginTransaction();
