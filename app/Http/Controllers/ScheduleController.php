@@ -47,6 +47,13 @@ class ScheduleController extends Controller
         return view('schedules.add', compact('userTeacher'));
     }
 
+    public function getSchedules(Request $request)
+    {
+        $teacher = $this->teacherService->getTeacher();
+        $schedules = $this->scheduleService->getSchedules($request, $teacher);
+        return $schedules;
+    }
+
     public function update(Request $request)
     {
         $userTeacher = $this->teacherService->getUserTeacher();
