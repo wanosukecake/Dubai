@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,9 @@ Route::middleware(['auth'])->group(function () {
 
 // 認証と初期情報チェックが必要なルーティングは以下
 Route::middleware(['auth','initial_check'])->group(function () {
-    Route::resource('schedule', 'ScheduleController');
+    Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('/schedule/add', [ScheduleController::class, 'add'])->name('schedule.add');
+    Route::post('/schedule/update', [ScheduleController::class, 'update']);
     Route::get('/teacher', [TeacherController::class, 'index'])->name('teacher.index');
     Route::get('/teacher/add', [TeacherController::class, 'add'])->name('teacher.add');
     Route::get('/teacher/{id}/edit', [TeacherController::class, 'edit'])->name('teacher.edit');
